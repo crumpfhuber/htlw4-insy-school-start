@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.winklerlabs.ASCIIWriter.*;
+
 public class Main {
 
     private static final String PERSISTENCE_UNIT_NAME = "school_SQLServer";
@@ -20,7 +22,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
-        ASCIIWriter.printSignatureOne();
+        printSignatureOne();
 
         System.out.println("**************************************************");
         System.out.println("**************************************************");
