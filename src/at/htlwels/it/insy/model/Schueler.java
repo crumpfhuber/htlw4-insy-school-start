@@ -1,6 +1,6 @@
 package at.htlwels.it.insy.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
