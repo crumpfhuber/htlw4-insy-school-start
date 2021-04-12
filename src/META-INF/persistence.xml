@@ -6,11 +6,11 @@
 
 
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="javax.persistence.jdbc.url"
+			<property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="jakarta.persistence.jdbc.url"
 				value="jdbc:sqlserver://localhost:1433;databaseName=School" />
-			<property name="javax.persistence.jdbc.user" value="SA" />
-			<property name="javax.persistence.jdbc.password" value="Pa$$word1234" />
+			<property name="jakarta.persistence.jdbc.user" value="SA" />
+			<property name="jakarta.persistence.jdbc.password" value="Pa$$word1234" />
 
 			<!--EclipseLink should create the database schema automatically -->
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
@@ -24,11 +24,11 @@
 
 
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url"
+			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="jakarta.persistence.jdbc.url"
 					  value="jdbc:mysql://localhost:3306/School" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="password" />
+			<property name="jakarta.persistence.jdbc.user" value="root" />
+			<property name="jakarta.persistence.jdbc.password" value="password" />
 
 			<!--EclipseLink should create the database schema automatically -->
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
