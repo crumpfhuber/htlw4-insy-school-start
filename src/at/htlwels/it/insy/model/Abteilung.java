@@ -1,28 +1,31 @@
 package at.htlwels.it.insy.model;
 
-
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+public class Abteilung implements Serializable {
 
-public class Abteilung {
-
-   
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
     private String bezeichnung;
     private String kurzBezeichnung;
 
-  
-    private List<Fach> faecher = new ArrayList<>();
+    @OneToMany(mappedBy = "abteilung")
+    private List<Fach> faecher;
 
-  
-    private List<Schulklasse> schulKlassen = new ArrayList<>();
+    @OneToMany(mappedBy = "abteilung")
+    private List<Schulklasse> schulKlassen;
 
     public Abteilung() {
-
+        faecher = new ArrayList<>();
+        schulKlassen = new ArrayList<>();
     }
 
     public Long getOid() {

@@ -4,13 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@Entity
+public class Schuljahr implements Serializable {
 
-public class Schuljahr {
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
     private String bezeichnung;

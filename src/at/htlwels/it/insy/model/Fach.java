@@ -1,14 +1,17 @@
 package at.htlwels.it.insy.model;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+public class Fach implements Serializable {
 
-public class Fach {
-
-   
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
     private Long sjOID;
@@ -16,16 +19,23 @@ public class Fach {
     private int anzahlWochenStunden;
     private int stundenTeiler;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     private Abteilung abteilung;
 
-    private List<UnterrichtsEinheit> unterrichtsEinheiten = new ArrayList<>();
+    @OneToMany(mappedBy = "fach")
+    private List<UnterrichtsEinheit> unterrichtsEinheiten;
 
-
-
-    private List<Lehrer> lehrer = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "JOIN_LEHRER_FACH",
+            joinColumns = {@JoinColumn(name = "lehrer_oid")},
+            inverseJoinColumns = {@JoinColumn(name = "fach_oid")}
+    )
+    private List<Lehrer> lehrer;
 
 
     public Fach() {
+         unterrichtsEinheiten = new ArrayList<>();
+         lehrer = new ArrayList<>();
     }
 
     public Long getOid() {

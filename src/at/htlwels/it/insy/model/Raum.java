@@ -1,11 +1,15 @@
 package at.htlwels.it.insy.model;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Objects;
 
 
-public class Raum {
+public class Raum implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
     private Long sjOID;
@@ -19,7 +23,8 @@ public class Raum {
     private int verkabelteSitzplaetze;
     private int bestomteSitzplaetze;
 
-     private Schulklasse schulklasse;
+    @OneToOne(mappedBy = "raum")
+    private Schulklasse schulklasse;
 
     public Raum() {
     }

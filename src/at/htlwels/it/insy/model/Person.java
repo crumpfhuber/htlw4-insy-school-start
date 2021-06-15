@@ -1,13 +1,16 @@
 package at.htlwels.it.insy.model;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@Entity
+public class Person implements Serializable {
 
-public abstract class Person {
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
     private String vorName;

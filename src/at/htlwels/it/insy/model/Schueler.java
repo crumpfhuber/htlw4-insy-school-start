@@ -1,17 +1,19 @@
 package at.htlwels.it.insy.model;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-
-public class Schueler extends Person {
-
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Schueler extends Person implements Serializable {
 
     private Timestamp schulEintrittsDatum;
     private long schuelerIdentifikationsNummer;
 
-
+    @ManyToOne(fetch = FetchType.EAGER)
     private Schulklasse schulKlasse;
 
     public Schueler() {

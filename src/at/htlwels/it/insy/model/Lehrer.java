@@ -1,14 +1,16 @@
 package at.htlwels.it.insy.model;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
-public class Lehrer extends Person {
-
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Lehrer extends Person implements Serializable {
 
     private String akademischerTitel;
     private String abgeschlosseneStudienRichtungen;
@@ -16,18 +18,22 @@ public class Lehrer extends Person {
     private Timestamp beginnUnterrichtsTaetigkeit;
     private int unterrrichtsJahre;
 
-    
+    @OneToOne(mappedBy = "klassenVorstand")
     private Schulklasse klassenVorstandSchulklasse;
 
-    private List<UnterrichtsEinheit> unterrichtsEinheiten = new ArrayList<>();
-   
-    List<Fach> faecher = new ArrayList<>();
+    @OneToMany(mappedBy="lehrer")
+    private List<UnterrichtsEinheit> unterrichtsEinheiten;
 
-    List<Schulklasse> schulklassen = new ArrayList<>();
+    @ManyToMany(mappedBy ="lehrer")
+    List<Fach> faecher;
 
-
+    @ManyToMany(mappedBy ="lehrer")
+    List<Schulklasse> schulklassen;
 
     public Lehrer() {
+        unterrichtsEinheiten = new ArrayList<>();
+        faecher = new ArrayList<>();
+        schulklassen = new ArrayList<>();
     }
 
     public Schulklasse getKlassenVorstandSchulklasse() {
