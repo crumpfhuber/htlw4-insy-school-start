@@ -1,14 +1,12 @@
 package at.htlwels.it.insy.model;
 
 import jakarta.persistence.*;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Schulklasse implements Serializable {
+public class Schulklasse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,14 +17,15 @@ public class Schulklasse implements Serializable {
     private String jahrgang;
     private String klassenBezeichnung;
 
-    @OneToOne
-    @JoinColumn(name = "raum_oid")
+    @OneToOne()
+    @JoinColumn(name ="raumOID")
     private Raum raum;
 
-    @JoinColumn(name = "klassenVorstand_oid")
+    @OneToOne()
+    @JoinColumn(name = "klassenVorstandOID")
     private Lehrer klassenVorstand;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER)
     private Abteilung abteilung;
 
     @OneToMany(mappedBy = "schulKlasse")
@@ -34,13 +33,13 @@ public class Schulklasse implements Serializable {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-            name = "JOIN_LEHRER_SCHULKLASSE",
-            joinColumns = {@JoinColumn(name = "lehrer_oid")},
-            inverseJoinColumns = {@JoinColumn(name = "schulklasse_oid")}
+            name = "LEHRER_SCHULKLASSE",
+            joinColumns = {@JoinColumn(name = "lehrerOID")},
+            inverseJoinColumns = {@JoinColumn(name = "schulklasseOID")}
     )
     private List<Lehrer> lehrer = new ArrayList<>();
 
-    @OneToMany(mappedBy = "einheiten")
+    @OneToMany(mappedBy="schulKlasse")
     private List<UnterrichtsEinheit> unterrichtsEinheiten = new ArrayList<>();
 
     public Schulklasse() {

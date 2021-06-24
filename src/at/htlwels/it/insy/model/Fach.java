@@ -26,9 +26,10 @@ public class Fach implements Serializable {
     private List<UnterrichtsEinheit> unterrichtsEinheiten;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "JOIN_LEHRER_FACH",
-            joinColumns = {@JoinColumn(name = "lehrer_oid")},
-            inverseJoinColumns = {@JoinColumn(name = "fach_oid")}
+    @JoinTable(
+            name = "LEHRER_FACH",
+            joinColumns = {@JoinColumn(name = "lehrerOID")},
+            inverseJoinColumns = {@JoinColumn(name = "fachOID")}
     )
     private List<Lehrer> lehrer;
 

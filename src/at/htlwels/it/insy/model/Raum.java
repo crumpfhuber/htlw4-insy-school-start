@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-
+@Entity
 public class Raum implements Serializable {
 
     @Id

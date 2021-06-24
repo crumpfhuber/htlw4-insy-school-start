@@ -1,25 +1,24 @@
 package at.htlwels.it.insy.model;
 
 import jakarta.persistence.*;
-
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class UnterrichtsEinheit implements Serializable {
+public class UnterrichtsEinheit {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
     private Long sjOID;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER)
     private Schulklasse schulKlasse;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER)
     private Lehrer lehrer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER)
     private Fach fach;
 
     public UnterrichtsEinheit() {
